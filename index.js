@@ -3,7 +3,6 @@ const cors = require('cors')
 const express = require("express");
 
 const app = express();
-require('dotenv').config()
 app.use(cors())
 app.use(express.json());
 
@@ -90,6 +89,3 @@ app.post("/", async (req,res)=>{
 
 
 });
-
-//start listening on port 8000
-app.listen(8000,()=>{console.log("listening on 8000")});
