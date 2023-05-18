@@ -3,7 +3,7 @@ const cors = require('cors')
 const express = require("express");
 
 const app = express();
-require('dotenv').config();
+const PORT = process.env.PORT || 5050;
 app.use(cors())
 app.use(express.json());
 
@@ -23,7 +23,9 @@ function generatePrompt(gender, letter, region) {
     return `Suggest one random ${genderString} name from ${region} starting with the letter ${letter}`;
   }
   
-
+  app.get('/', (req, res) => {
+    res.send(`<h1>Welcome to my Express App</h1>`);
+});
 //call the openai completion endpoint
 app.post("/", async (req,res)=>{
 
@@ -91,4 +93,6 @@ app.post("/", async (req,res)=>{
 
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(PORT, () => {
+  console.log(`app running on port ${PORT}`)
+});
